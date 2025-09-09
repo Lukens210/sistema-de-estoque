@@ -1,0 +1,1 @@
+esse projeto eu vou fazer um sistema de cadastro de produtos com uma tabela de esqtoque
