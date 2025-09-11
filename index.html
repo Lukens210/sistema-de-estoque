@@ -18,15 +18,31 @@
             <th>preço</th>
             <th>quantidade</th>
             <th>valor total</th>
+            <th>Ações</th>
         </tr>
         </tbody><tbody id="corpo"><tr>  
             <td>Tv</td> 
             <td>R$2000,00</td> 
             <td>50</td> 
-            <td>R$100.000,00</td>      
+            <td>R$100.000,00</td>
+            <td><button onclick="Excluir()">Exluir</button></td>      
 
         </tr></tbody>
     </table>
+    <div id="cadast"></div>
+    <h1>Cadastrar Produto</h1>
+
+    Nome: <input type="text">
+    <br><br>
+    Preço: <input type="text">
+    <br><br>
+    Quantidade: <input type="text">
+    <br><br>
+    <button onclick="salvar()">Salvar</button>
+    <button onclick="cancelar()">cancelar</button>
+
+
+
 
     <br><br>
 
