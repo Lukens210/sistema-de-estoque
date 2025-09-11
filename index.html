@@ -20,8 +20,7 @@
             <th>valor total</th>
             <th>Ações</th>
         </tr>
-        </tbody><tbody id="corpo"><tr>       
-        </tr></tbody>
+      <tbody id="corpo"></tbody>
     </table>
     <div id="cadast" class="hidden">
     <h1>Cadastrar Produto</h1>
@@ -47,6 +46,7 @@
         let produtos = []
         let precos = []
         let quantidades = []
+        let total = []
 
 
 
@@ -67,9 +67,27 @@
             precos.push(preco.value)
             let quantidade = document.getElementById('campo3')
             quantidades.push(quantidade.value)
-            console.log(produtos, precos, quantidades)
-        }
+            
+            document.getElementById("tabela").classList.remove('hidden')
+            document.getElementById("corpo").classList.remove('hidden')
+            document.getElementById("cadast").classList.add('hidden')
 
+            mostrartabela()
+        }
+        function mostrartabela(){
+            const corpo = document.getElementById('corpo')
+for (let i = 0; i < produtos.length ; i++) {
+    const linha = document.createElement("tr")
+    linha.innerHTML = `  
+        <td>${produtos[i]}</td> 
+        <td>${precos[i]}</td> 
+        <td>${quantidades[i]}</td> 
+        <td>${total[i]}</td>      
+    `
+    corpo.appendChild(linha)
+
+}
+        }
     </script>
 
 </body>
