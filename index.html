@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <button onclick="cadastrar()">Cadastrar produto</button>
+    <button onclick="cadastro()">Cadastrar produto</button>
 
     <table border="1">
         <tbody id="tabela"><tr>
@@ -20,23 +20,17 @@
             <th>valor total</th>
             <th>Ações</th>
         </tr>
-        </tbody><tbody id="corpo"><tr>  
-            <td>Tv</td> 
-            <td>R$2000,00</td> 
-            <td>50</td> 
-            <td>R$100.000,00</td>
-            <td><button onclick="Excluir()">Exluir</button></td>      
-
+        </tbody><tbody id="corpo"><tr>       
         </tr></tbody>
     </table>
     <div id="cadast" class="hidden">
     <h1>Cadastrar Produto</h1>
 
-    Nome: <input type="text">
+    Nome: <input type="text" id="campo1">
     <br><br>
-    Preço: <input type="text">
+    Preço: <input type="number" id="campo2">
     <br><br>
-    Quantidade: <input type="text">
+    Quantidade: <input type="number" id="campo3">
     <br><br>
     <button onclick="salvar()">Salvar</button>
     <button onclick="cancelar()">cancelar</button>
@@ -50,7 +44,13 @@
     </div>
 
     <script>
-        function cadastrar(){
+        let produtos = []
+        let precos = []
+        let quantidades = []
+
+
+
+        function cadastro(){
             document.getElementById("tabela").classList.add('hidden')
             document.getElementById("corpo").classList.add('hidden')
             document.getElementById("cadast").classList.remove('hidden')
@@ -60,23 +60,16 @@
             document.getElementById("corpo").classList.remove('hidden')
             document.getElementById("cadast").classList.add('hidden')
         } 
+        function salvar(){
+            let produto = document.getElementById('campo1')
+            produtos.push(produto.value)
+            let preco = document.getElementById('campo2')
+            precos.push(preco.value)
+            let quantidade = document.getElementById('campo3')
+            quantidades.push(quantidade.value)
+            console.log(produtos, precos, quantidades)
+        }
 
-        let produtos = []
-        let precos = []
-        let quantidades = []
-        
-
-        const corpo = document.getElementById('corpo')
-     for (let i = 0; i < nomes.length ; i++) {
-    const linha = document.createElement("tr")
-    linha.innerHTML = `  
-        <td>${produtos[i]}</td> 
-        <td>${precos[i]}</td> 
-        <td>${quantidades[i]}</td>      
-    `
-    corpo.appendChild(linha)
-
-}
     </script>
 
 </body>
