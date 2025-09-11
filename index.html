@@ -1,38 +1,127 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>  
-        .hidden {display:none} 
+    <style>
+        .hidden {
+            display: none
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            padding: 30px;
+            color: #333;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #cadast {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 400px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+
+            table,
+            #cadast {
+                width: 100%;
+            }
+
+            button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
     </style>
 </head>
+
 <body>
 
     <button onclick="cadastro()">Cadastrar produto</button>
 
     <table border="1">
-        <tbody id="tabela"><tr>
-            <th>produto</th>
-            <th>preço</th>
-            <th>quantidade</th>
-            <th>valor total</th>
-            <th>Ações</th>
-        </tr>
-      <tbody id="corpo"></tbody>
+        <tbody id="tabela">
+            <tr>
+                <th>produto</th>
+                <th>preço</th>
+                <th>quantidade</th>
+                <th>valor total</th>
+                <th>Ações</th>
+            </tr>
+        <tbody id="corpo"></tbody>
     </table>
     <div id="cadast" class="hidden">
-    <h1>Cadastrar Produto</h1>
+        <h1>Cadastrar Produto</h1>
 
-    Nome: <input type="text" id="campo1">
-    <br><br>
-    Preço: <input type="number" id="campo2">
-    <br><br>
-    Quantidade: <input type="number" id="campo3">
-    <br><br>
-    <button onclick="salvar()">Salvar</button>
-    <button onclick="cancelar()">cancelar</button>
+        Nome: <input type="text" id="campo1">
+        <br><br>
+        Preço: <input type="number" id="campo2">
+        <br><br>
+        Quantidade: <input type="number" id="campo3">
+        <br><br>
+        <button onclick="salvar()">Salvar</button>
+        <button onclick="cancelar()">cancelar</button>
     </div>
 
 
@@ -46,49 +135,54 @@
         let produtos = []
         let precos = []
         let quantidades = []
-        let total = []
+        let totais = []
 
 
 
-        function cadastro(){
+        function cadastro() {
             document.getElementById("tabela").classList.add('hidden')
             document.getElementById("corpo").classList.add('hidden')
             document.getElementById("cadast").classList.remove('hidden')
         }
-        function cancelar(){
+        function cancelar() {
             document.getElementById("tabela").classList.remove('hidden')
             document.getElementById("corpo").classList.remove('hidden')
             document.getElementById("cadast").classList.add('hidden')
-        } 
-        function salvar(){
+        }
+        function salvar() {
             let produto = document.getElementById('campo1')
             produtos.push(produto.value)
             let preco = document.getElementById('campo2')
             precos.push(preco.value)
             let quantidade = document.getElementById('campo3')
             quantidades.push(quantidade.value)
-            
+            let total = parseFloat(preco.value) * parseInt(quantidade.value)
+            totais.push(total)
+
+
+
             document.getElementById("tabela").classList.remove('hidden')
             document.getElementById("corpo").classList.remove('hidden')
             document.getElementById("cadast").classList.add('hidden')
 
             mostrartabela()
         }
-        function mostrartabela(){
+        function mostrartabela() {
             const corpo = document.getElementById('corpo')
-for (let i = 0; i < produtos.length ; i++) {
-    const linha = document.createElement("tr")
-    linha.innerHTML = `  
+            for (let i = 0; i < produtos.length; i++) {
+                const linha = document.createElement("tr")
+                linha.innerHTML = `  
         <td>${produtos[i]}</td> 
-        <td>${precos[i]}</td> 
+        <td>R$${precos[i]}</td> 
         <td>${quantidades[i]}</td> 
-        <td>${total[i]}</td>      
+        <td>${totais[i]}</td>   
     `
-    corpo.appendChild(linha)
+                corpo.appendChild(linha)
 
-}
+            }
         }
     </script>
 
 </body>
+
 </html>
