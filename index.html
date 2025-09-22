@@ -149,6 +149,13 @@
             document.getElementById("corpo").classList.remove('hidden')
             document.getElementById("cadast").classList.add('hidden')
         }
+        function Excluir(indice){
+            nomes.splice(indice,1)
+            precos.splice(indice,1)
+            quantidades.splice(indice,1)
+            totais.splice(indice,1)
+            mostrartabela()
+        }
         function salvar() {
             let produto = document.getElementById('campo1')
             produtos.push(produto.value)
@@ -175,7 +182,7 @@
         <td>${produtos[i]}</td> 
         <td>R$${precos[i]}</td> 
         <td>${quantidades[i]}</td> 
-        <td>${totais[i]}</td>  
+        <td>R$${totais[i]}</td>  
         <td><button onclick="Excluir()">Excluir</button></td>
     `
                 corpo.appendChild(linha)
