@@ -133,10 +133,11 @@
 
     <script>
         let produtos = []
-        let precos = []
-        let quantidades = []
-        let totais = []
 
+        
+
+
+     
 
 
         function cadastro() {
@@ -149,24 +150,30 @@
             document.getElementById("corpo").classList.remove('hidden')
             document.getElementById("cadast").classList.add('hidden')
         }
-        function Excluir(indice){
-            nomes.splice(indice,1)
-            precos.splice(indice,1)
-            quantidades.splice(indice,1)
-            totais.splice(indice,1)
+        function excluir(index){
+            produtos.splice(index, 1)
             mostrartabela()
         }
+
         function salvar() {
-            let produto = document.getElementById('campo1')
-            produtos.push(produto.value)
+            let nome = document.getElementById('campo1')
+            
             let preco = document.getElementById('campo2')
-            precos.push(preco.value)
+            
             let quantidade = document.getElementById('campo3')
-            quantidades.push(quantidade.value)
+            
             let total = parseFloat(preco.value) * parseInt(quantidade.value)
-            totais.push(total)
+            
+
+            let produto = {
+            nome: nome.value,
+            preco: preco.value,
+            quantidade: quantidade.value,
+            total: total
+        }
 
 
+        produtos.push(produto)
 
             document.getElementById("tabela").classList.remove('hidden')
             document.getElementById("corpo").classList.remove('hidden')
@@ -174,16 +181,20 @@
 
             mostrartabela()
         }
+
+
+
         function mostrartabela() {
             const corpo = document.getElementById('corpo')
+            corpo.innerHTML = ""
             for (let i = 0; i < produtos.length; i++) {
                 const linha = document.createElement("tr")
                 linha.innerHTML = `  
-        <td>${produtos[i]}</td> 
-        <td>R$${precos[i]}</td> 
-        <td>${quantidades[i]}</td> 
-        <td>R$${totais[i]}</td>  
-        <td><button onclick="Excluir()">Excluir</button></td>
+        <td>${produtos[i].nome}</td> 
+        <td>R$${produtos[i].preco}</td> 
+        <td>${produtos[i].quantidade}</td> 
+        <td>R$${produtos[i].total}</td>  
+        <td><button onclick="excluir(${i})">Excluir</button></td>
     `
                 corpo.appendChild(linha)
 
